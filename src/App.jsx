@@ -51,7 +51,10 @@ export const App = () => {
     list.reverse();
   }
 
-  const isChanged = sortType !== 'none' || isReversed;
+  const arraysEqual = (a, b) =>
+    a.length === b.length && a.every((item, i) => item === b[i]);
+
+  const isChanged = !arraysEqual(list, initialGoods);
 
   return (
     <div className="section content">
@@ -81,11 +84,7 @@ export const App = () => {
         </button>
 
         {isChanged && (
-          <button
-            type="button"
-            onClick={handleReset}
-            className="button is-danger is-light"
-          >
+          <button type="button" onClick={handleReset} className="button is-danger is-light">
             Reset
           </button>
         )}
